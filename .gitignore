@@ -1,3 +1,8 @@
+# Files that contain data that should not be shared online
+Raman_database.db
+custom_spectra.zip
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
