@@ -22,7 +22,18 @@ from scipy.signal import find_peaks
 
 
 
-def find_peak_positions(xx, yy, prominence_threshold=0.05, remove_bg=False):
+def find_peak_positions(xx: np.ndarray, yy: np.ndarray, prominence_threshold=0.05, remove_bg=False):
+    """Finds the peaks above a certain prominence threshold in a spectrum, returning their wavenumbers, heights and prominences
+
+    Args:
+        xx (np.ndarray): Array of wavenumbers
+        yy (np.ndarray): Array of intensities
+        prominence_threshold (float, optional): Prominence which all peaks must be above. Defaults to 0.05.
+        remove_bg (bool, optional): Whether to remove background before peak finding. Enable if the background has not already been subtracted; enable if not. Defaults to False.
+
+    Returns:
+        Tuple [ndarray, ndarray, ndarray]: Wavenumbers, heights, and prominences of the peaks.
+    """    
     if remove_bg:
         with np.errstate(over="ignore"):
             background = arpls(yy)
@@ -39,8 +50,19 @@ def find_peak_positions(xx, yy, prominence_threshold=0.05, remove_bg=False):
     return x_peaks, y_peaks, properties["prominences"]
     
 
-def arpls(y, lam=10000, ratio=0.05, itermax=100):
+def arpls(y: np.ndarray, lam=10000, ratio=0.05, itermax=100) -> np.ndarray:
+    """Compute the baseline of a spectrum using the Asymmetrically Reweighted Penalized Least Squares method
 
+    Args:
+        y (np.ndarray): Input spectrum intensities
+        lam (int, optional): Smoothing parameter. Defaults to 10000.
+        ratio (float, optional): Convergence ratio. Defaults to 0.05.
+        itermax (int, optional): Maximum number of iterations. Defaults to 100.
+
+    Returns:
+        np.ndarray: The baseline of the spectrum
+    """   
+    
     N = len(y)
     D = diags([1, -2, 1], [0, 1, 2], shape=(N - 2, N))
     H = lam * D.T.dot(D)
