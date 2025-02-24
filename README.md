@@ -3,15 +3,17 @@ An interactive Python tool for comparing and matching Raman spectra.
 
 ### Prerequisites
 This program requires a Python 3 installation with the following libraries:
+- IPython Kernel (ipykernel)
 - NumPy
 - Pandas
 - SciPy
 - Jupyter Widgets (ipywidgets)
+- tqdm
 - Plotly (due to a known issue with Plotly v6, please install Plotly v5.24)
 
 These can be installed using the terminal command
 ```
-pip install numpy pandas scipy ipywidgets plotly==5.24
+pip install ipykernel numpy pandas scipy ipywidgets tqdm plotly==5.24
 ```
 with your Python environment active.
 
