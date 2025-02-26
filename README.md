@@ -1,6 +1,12 @@
 # Ramanalysis
 An interactive Python tool for comparing and matching Raman spectra.
 
+This program is inspired by the Raman Match software, but with a more responsive Jupyter Widgets-based interface and improved matching algorithm. We are thankful to the authors of Raman Match for providing their open-source code, without which the development of Ramanalysis would have been much more challenging. Please find the Raman Match paper and GitHub repository linked below.
+
+Berrada, McFall & Chen (2025). Raman Match: Application for automated identification of minerals from Raman spectroscopy data. *American Mineralogist* 110, 25–33. doi:[10.2138/am-2023-9227](https://doi.org/10.2138/am-2023-9227).
+
+[github.com/meryemberradauwo/RamanMatch](https://github.com/meryemberradauwo/RamanMatch)
+
 ### Prerequisites
 This program requires a Python 3 installation with the following libraries:
 - IPython Kernel (ipykernel)
@@ -25,6 +31,9 @@ python Create_Raman_db.py
 when navigated to this directory, with your Python environment active.
 
 `Create_Raman_db.py` can be edited to change the database files that are downloaded from rruff.info, or add custom spectra from a local zip file.
+
+### Interface Tour
+![Annotated example of the interface for Ramanalysis](images/Ramanalysis_Interface_Annotated.png)
 
 ### Usage
 Once the database has been created, open `Ramanalysis.ipynb` in Jupyter Lab, Visual Studio Code, DataSpell, or other equivalent software. Run the first three code cells in this notebook, and the interface should appear.
