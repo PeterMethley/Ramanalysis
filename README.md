@@ -28,7 +28,7 @@ Before running the main Ramanalysis notebook, you must first generate the Raman 
 ```
 python Create_Raman_db.py
 ```
-when navigated to this directory, with your Python environment active.
+when navigated to this directory, with your Python environment active. This will take a few minutes to run, but you only need to do it once! The program will respond "Database creation complete." when it is done.
 
 `Create_Raman_db.py` can be edited to change the database files that are downloaded from rruff.info, or add custom spectra from a local zip file.
 
