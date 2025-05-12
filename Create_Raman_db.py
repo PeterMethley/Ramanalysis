@@ -111,11 +111,14 @@ def insert_data_from_zip(zip_ref: zipfile.ZipFile, zip_file_name: str, cursor: s
                 
             peak_xs, peak_ys, peak_prominences = find_peak_positions(df["Wavenumber"], df["Intensity"]/df["Intensity"].max(), prominence_threshold=prominence_threshold, remove_bg=True)
 
+            min_x = df["Wavenumber"].min()
+            max_x = df["Wavenumber"].max()
+
             # Insert into the database
             if len(df) != 0:
                 # print(filename)
-                cursor.execute("INSERT INTO database_table (filename, mineral_name, rruff_id, wavelength, orientation, file_number, elements, quality, x_data, y_data, peak_xs, peak_ys, peak_prominences) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                                (filename, mineral_name, rruff_id, wavelength, orientation, file_number, elements, quality, json.dumps(list(df["Wavenumber"])), json.dumps(list(df["Intensity"])), json.dumps(list(peak_xs)), json.dumps(list(peak_ys)), json.dumps(list(peak_prominences))))
+                cursor.execute("INSERT INTO database_table (filename, mineral_name, rruff_id, wavelength, orientation, file_number, elements, quality, x_data, y_data, peak_xs, peak_ys, peak_prominences, min_x, max_x) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                (filename, mineral_name, rruff_id, wavelength, orientation, file_number, elements, quality, json.dumps(list(df["Wavenumber"])), json.dumps(list(df["Intensity"])), json.dumps(list(peak_xs)), json.dumps(list(peak_ys)), json.dumps(list(peak_prominences)), min_x, max_x))
                 
         except Exception as e:
             print(f"Skipping file {filename}, due to error: {e}")
@@ -153,7 +156,9 @@ def main(database_file_name : str, urls_to_download: Iterable[str], extra_zip_fi
             y_data REAL,
             peak_xs REAL,
             peak_ys REAL,
-            peak_prominences REAL
+            peak_prominences REAL,
+            min_x REAL,
+            max_x REAL
         )
     '''
     cursor.execute(create_table_query)

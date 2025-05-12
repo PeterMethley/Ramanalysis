@@ -29,7 +29,7 @@ def find_peak_positions(xx: np.ndarray, yy: np.ndarray, prominence_threshold=0.0
         xx (np.ndarray): Array of wavenumbers
         yy (np.ndarray): Array of intensities
         prominence_threshold (float, optional): Prominence which all peaks must be above. Defaults to 0.05.
-        remove_bg (bool, optional): Whether to remove background before peak finding. Enable if the background has not already been subtracted; enable if not. Defaults to False.
+        remove_bg (bool, optional): Whether to remove background before peak finding. Disable if the background has already been subtracted; enable if not. Defaults to False.
 
     Returns:
         Tuple [ndarray, ndarray, ndarray]: Wavenumbers, heights, and prominences of the peaks.
